@@ -33,13 +33,13 @@ const Auto = () => {
           />
           {display && (
             <div>
-              {options.filter((name) => name.indexOf(search.toLowerCase()) > -1 ).map((value, ind) => {
+              {options.filter(({name}) => name.indexOf(search.toLowerCase()) > -1 ).map((value, ind) => {
                 return(
                   <div 
-                    onClick={() => setResult(value)} 
+                    onClick={() => setResult(value.name)} 
                     key={ind}
                   >
-                    {value}
+                    {value.name}
                   </div>
                 )
               })}

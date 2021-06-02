@@ -75,23 +75,23 @@ class AutofillBox extends React.Component {
     }
 
     componentDidMount(){
-        let firstFilteredData = autofillData.map((value, ind) => {
-            return(
-                <p key={ind}>{value}</p>
-            )
-        })
-        this.setState({
-            ...this.state,
-            filteredData: firstFilteredData
-        })
+        // let firstFilteredData = autofillData.map((value, ind) => {
+        //     return(
+        //         <p key={ind}>{value}</p>
+        //     )
+        // })
+        // this.setState({
+        //     ...this.state,
+        //     filteredData: firstFilteredData
+        // })
     }
 
     render(){
         return(
             <div className='autofill'>
                 <h3 className='autofill__title'>Please type in a website you want to visit. Start with 'https://' to begin the search....</h3>
-                <input onClick={this.changeSearch} onChange={this.updateInputData} className='autofill__input' placeholder='ex. https://google.com' />
-                {this.state.search ? this.state.filteredData : null}
+                {/* <input onClick={this.changeSearch} onChange={this.updateInputData} className='autofill__input' placeholder='ex. https://google.com' />
+                {this.state.search ? this.state.filteredData : null} */}
             </div>
         )
     }
