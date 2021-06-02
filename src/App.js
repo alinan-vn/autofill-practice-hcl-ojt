@@ -1,22 +1,21 @@
 import './index.css';
 
-import AutofillBox from './components/autofillBox/index';
-import {BrowserRouter, Route} from 'react-router-dom';
-
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import {autofillData} from './components/autofillData/index';
 
 const Auto = () => {
-  const [display, setDisplay] = useState(false);
-  const [options, setOptions] = useState([]);
-  const [search, setSearch] = useState("");
+  const [display, setDisplay] = useState(false); // useState hook to show suggestions or now
+  const [options, setOptions] = useState([]); // useState hook to contain the data which we are filtering from
+  const [search, setSearch] = useState(""); // useState hook that contains user input
 
+  // sets setOptions data once, prevents from multiple re-renders
   useEffect(() => {
-    const data = autofillData;
+    const data = autofillData; 
 
     setOptions(data)
   }, [])
 
+  // sets display and userinput into their respective useState hooks
   const setResult = result => {
     setSearch(result);
     setDisplay(false);
@@ -26,23 +25,29 @@ const Auto = () => {
       <div>
           <input 
             id='auto' 
+            className='autofill__input'
             onClick={() => setDisplay(!display)} 
             placeholder='Type to search' 
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+          
           {display && (
             <div>
-              {options.filter(({name}) => name.indexOf(search.toLowerCase()) > -1 ).map((value, ind) => {
-                return(
-                  <div 
-                    onClick={() => setResult(value.name)} 
-                    key={ind}
-                  >
-                    {value.name}
-                  </div>
-                )
-              })}
+              {options
+                .filter(({name}) => name.indexOf(search.toLowerCase()) > -1 )
+                .map((value, ind) => {
+                  return(
+                    <div 
+                      className='autofill__suggestion'
+                      onClick={() => setResult(value.name)} 
+                      key={ind}
+                    >
+                      <p className='autofill__suggestion-text'>{value.name}</p>
+                    </div>
+                  )
+                })
+              }
             </div>
           )}
       </div>
@@ -52,20 +57,12 @@ const Auto = () => {
 function App() {
   return (
     <div>
-      <div>
+      <div className='autofill'>
           <h1>Custom Autocomplete React</h1>
           <div>
               <Auto />
           </div>
       </div>
-
-
-      <br /><br /><hr />
-      <p>IGNORE BELOW THIS LINE</p>
-      <hr />
-      <BrowserRouter>
-          <Route exact path="/" component={AutofillBox} />
-      </BrowserRouter>
     </div>
   );
 }
