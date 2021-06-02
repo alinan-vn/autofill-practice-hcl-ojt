@@ -4,15 +4,47 @@ import AutofillBox from './components/autofillBox/index';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 import React, { useEffect, useState, useRef } from 'react';
+import {autofillData} from './components/autofillData/index';
 
 const Auto = () => {
   const [display, setDisplay] = useState(false);
   const [options, setOptions] = useState([]);
   const [search, setSearch] = useState("");
 
+  useEffect(() => {
+    const data = autofillData;
+
+    setOptions(data)
+  }, [])
+
+  const setResult = result => {
+    setSearch(result);
+    setDisplay(false);
+  }
+
   return (
       <div>
-          <input id='auto' placeholder='Type to search' />
+          <input 
+            id='auto' 
+            onClick={() => setDisplay(!display)} 
+            placeholder='Type to search' 
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          {display && (
+            <div>
+              {options.filter((name) => name.indexOf(search.toLowerCase()) > -1 ).map((value, ind) => {
+                return(
+                  <div 
+                    onClick={() => setResult(value)} 
+                    key={ind}
+                  >
+                    {value}
+                  </div>
+                )
+              })}
+            </div>
+          )}
       </div>
   )
 }
