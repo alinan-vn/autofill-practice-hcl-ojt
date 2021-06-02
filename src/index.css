@@ -5,9 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #69e9ee;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* $primary-color: #69e9ee;
+$secondary-color: #fa3131; */
+
+.autofill {
+  margin: 15vh 0 0 10vw;
+}
+
+.autofill__title {
+  font-size: 1.3rem;
+  color: #fa3131;
+}
+
+.autofill__input {
+  height: 5vh;
+  width: 50vw;
+  border-radius: 0.8rem;
 }

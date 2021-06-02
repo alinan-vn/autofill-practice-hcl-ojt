@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css';
 
 import AutofillBox from './components/autofillBox/index';
 import {BrowserRouter, Route} from 'react-router-dom';
